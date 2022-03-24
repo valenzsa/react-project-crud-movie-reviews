@@ -9,11 +9,13 @@ function App() {
   const [movieReviewList, setMovieReviewList] = useState([]);
 
   useEffect(() => {
-    Axios.get('http://localhost:5000/api/get')
-      .then((result) => {
-        console.log(result);
-        setMovieReviewList(result.data);
-      });
+    (async () => {
+      await Axios.get('http://localhost:5000/api/get')
+        .then((result) => {
+          console.log(result);
+          setMovieReviewList(result.data);
+        });
+    })();
   }, []);
 
   // Make an Axios/post request to send data to the backend
@@ -26,7 +28,15 @@ function App() {
 
     Axios.post('http://localhost:5000/api/insert', { movieName: movieName, movieReview: review }).then(() => {
       console.log('Successful insert!');
+      setMovieReviewList(
+        [
+          ...movieReviewList,
+          { movieName: movieName, movieReview: review }
+        ]
+      )
     });
+
+
   }
 
   return (
