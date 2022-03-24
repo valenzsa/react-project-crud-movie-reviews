@@ -35,8 +35,14 @@ function App() {
         ]
       )
     });
+  }
 
-
+  const deleteReview = (movie) => {
+    console.log(movie);
+    Axios.delete(`http://localhost:5000/api/delete/${movie}`)
+      .then(() => {
+        console.log('Movie review deleted!');
+      });
   }
 
   return (
@@ -61,7 +67,7 @@ function App() {
               <h2>{movieReviews.movieName}</h2>
               <p>{movieReviews.movieReview}</p>
 
-              <button>Delete</button>
+              <button onClick={() => deleteReview(movieReviews.movieName)}>Delete</button>
               <input type="text" id="updateInput" />
 
               <button>Update</button>
