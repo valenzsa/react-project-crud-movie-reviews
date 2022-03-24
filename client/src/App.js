@@ -53,13 +53,22 @@ function App() {
       </div>
 
       <h2>Movie Review List</h2>
-      <ul>
-        {
-          movieReviewList.map((movieReviews) => {
-            return <li>{movieReviews.movieName}</li>
-          })
-        }
-      </ul>
+
+      {
+        movieReviewList.map((movieReviews) => {
+          return (
+            <div className="card">
+              <h2>{movieReviews.movieName}</h2>
+              <p>{movieReviews.movieReview}</p>
+
+              <button>Delete</button>
+              <input type="text" id="updateInput" />
+
+              <button>Update</button>
+            </div>
+          )
+        })
+      }
 
     </div>
   );
